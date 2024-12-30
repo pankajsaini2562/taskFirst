@@ -51,9 +51,7 @@ export default function App() {
       );
       const videoUrl = videoResponse.data.secure_url;
 
-      setMessage(
-        `Upload Successful! Thumbnail URL: ${thumbnailUrl}, Video URL: ${videoUrl}`
-      );
+      setMessage("Upload Successful!");
     } catch (error) {
       setMessage("Upload failed. Please try again.");
       console.error(error);
