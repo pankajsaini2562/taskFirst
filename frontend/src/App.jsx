@@ -10,12 +10,10 @@ export default function App() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-
     if (!title || !description || !thumbnail || !video) {
       setMessage("All fields are required!");
       return;
     }
-
     setLoading(true);
     setMessage("");
 
@@ -33,7 +31,6 @@ export default function App() {
         "https://api.cloudinary.com/v1_1/ddkiocw2i/image/upload",
         thumbnailFormData
       );
-
       const thumbnailUrl = thumbnailResponse.data.secure_url;
 
       // Upload Video
@@ -44,14 +41,16 @@ export default function App() {
         "context",
         `title=${title}|description=${description}`
       ); // Attach metadata
-
       const videoResponse = await axios.post(
         "https://api.cloudinary.com/v1_1/ddkiocw2i/video/upload",
         videoFormData
       );
       const videoUrl = videoResponse.data.secure_url;
-
       setMessage("Upload Successful!");
+      setTitle("");
+      setDescription("");
+      setThumbnail("");
+      setVideo("");
     } catch (error) {
       setMessage("Upload failed. Please try again.");
       console.error(error);
